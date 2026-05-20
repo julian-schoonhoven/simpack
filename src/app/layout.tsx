@@ -18,8 +18,14 @@ export const metadata: Metadata = {
   description:
     "Simpack helps companies calculate ROI, risk, and ethical impact of AI investments in real time, enabling faster and better business decisions.",
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16.svg", sizes: "16x16", type: "image/svg+xml" },
+      { url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" }],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     title: "Simpack — AI Investment Intelligence",
@@ -32,7 +38,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#fafbfc",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafbfc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a101f" },
+  ],
 };
 
 export default function RootLayout({

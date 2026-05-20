@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, Globe } from "lucide-react";
 import { LOCALES, type LocaleCode } from "@/lib/i18n/locales";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
@@ -37,22 +37,21 @@ export function LanguageSelector({ className }: { className?: string }) {
         type="button"
         onClick={() => setOpen(!open)}
         className={cn(
-          "inline-flex h-10 items-center gap-1.5 rounded-xl border border-border bg-surface px-3 transition-all duration-200 hover:border-accent/30 hover:bg-accent/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
-          open && "border-accent/40 ring-2 ring-accent/20"
+          "group inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-surface px-3 transition-all duration-200 hover:border-accent/30 hover:bg-accent/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
+          open && "border-accent/40 bg-accent/5 ring-2 ring-accent/20"
         )}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={`${t.a11y.selectLanguage}: ${current.nativeName}`}
+        aria-label={`${t.a11y.selectLanguage}: ${current.shortCode}`}
       >
-        <span className="min-w-[1.75rem] text-center text-xs font-semibold tracking-wide text-foreground">
+        <Globe
+          className="h-[17px] w-[17px] shrink-0 text-muted transition-colors duration-200 group-hover:text-foreground"
+          strokeWidth={1.75}
+          aria-hidden
+        />
+        <span className="text-xs font-semibold tracking-wide text-foreground tabular-nums">
           {current.shortCode}
         </span>
-        <ChevronDown
-          className={cn(
-            "h-4 w-4 shrink-0 text-muted transition-transform duration-200",
-            open && "rotate-180"
-          )}
-        />
       </button>
 
       <AnimatePresence>

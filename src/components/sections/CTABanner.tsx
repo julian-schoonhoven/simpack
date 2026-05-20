@@ -15,18 +15,45 @@ export function CTABanner() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl border border-border bg-surface px-6 py-12 text-center shadow-xl shadow-slate-200/50 dark:border-navy-muted dark:bg-navy dark:shadow-black/30 sm:px-12 sm:py-16"
+          className={[
+            "relative overflow-hidden rounded-3xl border px-6 py-12 text-center sm:px-12 sm:py-16",
+            "transition-colors duration-300",
+            /* Light: iconic navy CTA */
+            "border-navy-muted/50 bg-navy shadow-xl shadow-navy/20",
+            /* Dark: clean off-white for contrast */
+            "dark:border-slate-200/80 dark:bg-[#f8fafc] dark:shadow-lg dark:shadow-black/20",
+          ].join(" ")}
         >
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-400/15 via-transparent to-transparent dark:from-teal-500/20"
+            className={[
+              "pointer-events-none absolute inset-0 transition-opacity duration-300",
+              "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))]",
+              "from-teal-400/20 via-transparent to-transparent",
+              "dark:from-teal-500/10",
+            ].join(" ")}
             aria-hidden
           />
-          <h2 className="relative text-2xl font-semibold tracking-tight text-foreground dark:text-white sm:text-3xl">
+
+          <h2
+            className={[
+              "relative text-2xl font-semibold tracking-tight sm:text-3xl",
+              "transition-colors duration-300",
+              "text-white dark:text-navy",
+            ].join(" ")}
+          >
             {t.cta.title}
           </h2>
-          <p className="relative mx-auto mt-3 max-w-lg text-sm text-muted dark:text-slate-300 sm:text-base">
+
+          <p
+            className={[
+              "relative mx-auto mt-3 max-w-lg text-sm sm:text-base",
+              "transition-colors duration-300",
+              "text-slate-300 dark:text-slate-600",
+            ].join(" ")}
+          >
             {t.cta.subtitle}
           </p>
+
           <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="#home" variant="accent" size="lg" className="w-full sm:w-auto">
               {t.cta.try}
@@ -36,7 +63,12 @@ export function CTABanner() {
               href="/pricing"
               variant="outline"
               size="lg"
-              className="w-full border-border dark:border-white/25 dark:text-white dark:hover:bg-white/10 sm:w-auto"
+              className={[
+                "w-full sm:w-auto",
+                "transition-colors duration-300",
+                "border-white/30 text-white hover:border-white/50 hover:bg-white/10",
+                "dark:border-navy/20 dark:text-navy dark:hover:border-navy/35 dark:hover:bg-navy/5",
+              ].join(" ")}
             >
               {t.cta.pricing}
             </Button>

@@ -68,10 +68,20 @@ export function Footer() {
               </p>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <span className="text-sm text-muted">{f.privacy}</span>
+                  <Link
+                    href="/privacy"
+                    className="text-sm text-foreground/80 transition-colors hover:text-accent"
+                  >
+                    {f.privacy}
+                  </Link>
                 </li>
                 <li>
-                  <span className="text-sm text-muted">{f.terms}</span>
+                  <Link
+                    href="/terms"
+                    className="text-sm text-foreground/80 transition-colors hover:text-accent"
+                  >
+                    {f.terms}
+                  </Link>
                 </li>
               </ul>
             </div>

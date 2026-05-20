@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
-import { Button } from "@/components/ui/Button";
+import { Button, startButtonDarkStyles } from "@/components/ui/Button";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { NAV_LINKS } from "@/lib/constants";
@@ -74,7 +74,12 @@ export function Navbar() {
         <div className="hidden items-center gap-2 lg:flex">
           <LanguageSelector />
           <ThemeToggle />
-          <Button href={isHome ? "#home" : "/#home"} size="sm" variant="primary">
+          <Button
+            href={isHome ? "#home" : "/#home"}
+            size="sm"
+            variant="primary"
+            className={startButtonDarkStyles}
+          >
             {t.nav.start}
           </Button>
         </div>
@@ -125,7 +130,8 @@ export function Navbar() {
                 <Button
                   href={isHome ? "#home" : "/#home"}
                   size="lg"
-                  className="w-full"
+                  variant="primary"
+                  className={cn("w-full", startButtonDarkStyles)}
                   onClick={() => setOpen(false)}
                 >
                   {t.nav.start}

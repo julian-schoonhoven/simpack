@@ -14,11 +14,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
+/** Teal primary CTA — shared by hero “Try Simpack” and navbar Start (dark mode) */
+export const accentCtaStyles =
+  "bg-accent text-white shadow-lg shadow-accent/25 hover:bg-accent-hover hover:shadow-xl hover:shadow-accent/30 active:scale-[0.98]";
+
+/** Apply hero-matching accent CTA look to primary buttons in dark mode only */
+export const startButtonDarkStyles =
+  "dark:bg-accent dark:text-white dark:shadow-lg dark:shadow-accent/25 dark:hover:bg-accent-hover dark:hover:shadow-xl dark:hover:shadow-accent/30";
+
 const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-navy text-white shadow-lg shadow-navy/15 hover:bg-navy-muted hover:shadow-xl hover:shadow-teal-500/10 active:scale-[0.98]",
-  accent:
-    "bg-accent text-white shadow-lg shadow-accent/25 hover:bg-accent-hover hover:shadow-xl hover:shadow-accent/30 active:scale-[0.98]",
+  accent: accentCtaStyles,
   secondary:
     "bg-surface text-foreground border border-border shadow-sm hover:bg-surface-elevated hover:border-teal-500/30 dark:hover:border-teal-500/40 active:scale-[0.98]",
   ghost:

@@ -1,13 +1,13 @@
 export const LOCALES = [
-  { code: "en", nativeName: "English", dir: "ltr" as const },
-  { code: "nl", nativeName: "Nederlands", dir: "ltr" as const },
-  { code: "zh", nativeName: "普通话", dir: "ltr" as const },
-  { code: "hi", nativeName: "हिन्दी", dir: "ltr" as const },
-  { code: "es", nativeName: "Español", dir: "ltr" as const },
-  { code: "fr", nativeName: "Français", dir: "ltr" as const },
-  { code: "ar", nativeName: "العربية", dir: "rtl" as const },
-  { code: "bn", nativeName: "বাংলা", dir: "ltr" as const },
-  { code: "ru", nativeName: "Русский", dir: "ltr" as const },
+  { code: "en", shortCode: "EN", nativeName: "English", dir: "ltr" as const },
+  { code: "nl", shortCode: "NL", nativeName: "Nederlands", dir: "ltr" as const },
+  { code: "zh", shortCode: "ZH", nativeName: "普通话", dir: "ltr" as const },
+  { code: "hi", shortCode: "HI", nativeName: "हिन्दी", dir: "ltr" as const },
+  { code: "es", shortCode: "ES", nativeName: "Español", dir: "ltr" as const },
+  { code: "fr", shortCode: "FR", nativeName: "Français", dir: "ltr" as const },
+  { code: "ar", shortCode: "AR", nativeName: "العربية", dir: "rtl" as const },
+  { code: "bn", shortCode: "BN", nativeName: "বাংলা", dir: "ltr" as const },
+  { code: "ru", shortCode: "RU", nativeName: "Русский", dir: "ltr" as const },
 ] as const;
 
 export type LocaleCode = (typeof LOCALES)[number]["code"];

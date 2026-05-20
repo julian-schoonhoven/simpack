@@ -134,6 +134,7 @@
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.35;
+    line-height: 1.4;
+    unicode-bidi: isolate;
   }
 }

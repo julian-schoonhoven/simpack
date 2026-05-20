@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { NAV_LINKS } from "@/lib/constants";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export function Footer() {
-  const footerLinks = NAV_LINKS.filter((l) => l.label !== "Home");
+  const { t } = useLanguage();
+  const f = t.footer;
 
   return (
     <footer className="border-t border-border bg-surface-elevated">
@@ -12,16 +16,13 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <Logo />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-              AI investment intelligence for modern businesses. Simulate ROI,
-              risk, and ethical impact before you commit.
-            </p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">{f.tagline}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="#home" size="sm">
-                Try Simpack
+              <Button href="#home" variant="accent" size="sm">
+                {f.try}
               </Button>
               <Button href="/pricing" variant="secondary" size="sm">
-                View Pricing
+                {f.viewPricing}
               </Button>
             </div>
           </div>
@@ -29,16 +30,16 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-                Product
+                {f.product}
               </p>
               <ul className="mt-4 space-y-2">
-                {footerLinks.slice(0, 4).map((link) => (
-                  <li key={link.label}>
+                {NAV_LINKS.slice(0, 4).map((link) => (
+                  <li key={link.labelKey}>
                     <Link
                       href={link.href.startsWith("#") ? `/${link.href}` : link.href}
-                      className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+                      className="text-sm text-foreground/80 transition-colors hover:text-accent"
                     >
-                      {link.label}
+                      {t.nav[link.labelKey]}
                     </Link>
                   </li>
                 ))}
@@ -46,16 +47,16 @@ export function Footer() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-                Company
+                {f.company}
               </p>
               <ul className="mt-4 space-y-2">
-                {footerLinks.slice(4).map((link) => (
-                  <li key={link.label}>
+                {NAV_LINKS.slice(4).map((link) => (
+                  <li key={link.labelKey}>
                     <Link
                       href={link.href.startsWith("#") ? `/${link.href}` : link.href}
-                      className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+                      className="text-sm text-foreground/80 transition-colors hover:text-accent"
                     >
-                      {link.label}
+                      {t.nav[link.labelKey]}
                     </Link>
                   </li>
                 ))}
@@ -63,14 +64,14 @@ export function Footer() {
             </div>
             <div className="col-span-2 sm:col-span-1">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-                Legal
+                {f.legal}
               </p>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <span className="text-sm text-muted">Privacy</span>
+                  <span className="text-sm text-muted">{f.privacy}</span>
                 </li>
                 <li>
-                  <span className="text-sm text-muted">Terms</span>
+                  <span className="text-sm text-muted">{f.terms}</span>
                 </li>
               </ul>
             </div>
@@ -79,9 +80,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-sm text-muted">
-            © {new Date().getFullYear()} Simpack. All rights reserved.
+            © {new Date().getFullYear()} Simpack. {f.rights}
           </p>
-          <p className="text-sm text-muted">Decision intelligence for modern business.</p>
+          <p className="text-sm text-muted">{f.motto}</p>
         </div>
       </div>
     </footer>

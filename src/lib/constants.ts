@@ -1,162 +1,120 @@
 export const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Features", href: "#features" },
-  { label: "How", href: "#how" },
-  { label: "Impact", href: "#impact" },
-  { label: "About", href: "#about" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Pricing", href: "/pricing" },
+  { labelKey: "features", href: "#features" },
+  { labelKey: "how", href: "#how" },
+  { labelKey: "impact", href: "#impact" },
+  { labelKey: "about", href: "#about" },
+  { labelKey: "faq", href: "#faq" },
+  { labelKey: "pricing", href: "/pricing" },
 ] as const;
 
 export const HERO_STATS = [
-  { value: "+32%", label: "better investment accuracy" },
-  { value: "< 5 min", label: "decision simulation" },
-  { value: "€1M+", label: "modeled investment scenarios" },
-  { value: "SME+", label: "built for SMEs & enterprises" },
+  { value: "+32%", labelKey: "statAccuracy" },
+  { value: "< 5 min", labelKey: "statSpeed" },
+  { value: "€1M+", labelKey: "statScenarios" },
+  { value: "SME+", labelKey: "statAudience" },
 ] as const;
 
 export const FEATURES = [
   {
     icon: "TrendingUp",
-    title: "ROI Simulation Engine",
-    description:
-      "Model expected returns across timelines with confidence intervals and sensitivity analysis.",
+    titleKey: "roiTitle",
+    descriptionKey: "roiDesc",
   },
   {
     icon: "Brain",
-    title: "AI Prediction Model",
-    description:
-      "Forecast outcomes using proprietary models trained on enterprise investment patterns.",
+    titleKey: "aiTitle",
+    descriptionKey: "aiDesc",
   },
   {
     icon: "GitBranch",
-    title: "What-if Scenarios",
-    description:
-      "Compare multiple investment paths side-by-side before committing capital.",
+    titleKey: "whatIfTitle",
+    descriptionKey: "whatIfDesc",
   },
   {
     icon: "Shield",
-    title: "Ethics Risk Scoring",
-    description:
-      "Quantify ethical and compliance exposure alongside financial metrics.",
+    titleKey: "ethicsTitle",
+    descriptionKey: "ethicsDesc",
   },
   {
     icon: "Wallet",
-    title: "Cashflow Forecasting",
-    description:
-      "Project inflows and outflows with scenario-linked cash position visibility.",
+    titleKey: "cashflowTitle",
+    descriptionKey: "cashflowDesc",
   },
   {
     icon: "FileText",
-    title: "Exportable Reports (PDF)",
-    description:
-      "Generate board-ready reports with charts, assumptions, and audit trails.",
+    titleKey: "exportTitle",
+    descriptionKey: "exportDesc",
   },
 ] as const;
 
 export const HOW_STEPS = [
-  {
-    step: "01",
-    title: "Input Data",
-    description:
-      "Upload investment parameters, budgets, timelines, and risk tolerances through a guided interface.",
-  },
-  {
-    step: "02",
-    title: "AI Simulation Engine",
-    description:
-      "Our engine runs thousands of simulations to model ROI, risk, and ethical impact in real time.",
-  },
-  {
-    step: "03",
-    title: "Decision Output",
-    description:
-      "Receive actionable recommendations, dashboards, and exportable reports for stakeholders.",
-  },
+  { step: "01", titleKey: "step1Title", descriptionKey: "step1Desc" },
+  { step: "02", titleKey: "step2Title", descriptionKey: "step2Desc" },
+  { step: "03", titleKey: "step3Title", descriptionKey: "step3Desc" },
 ] as const;
 
 export const IMPACT_METRICS = [
-  { label: "ROI increase", value: "28%", trend: "+12% YoY" },
-  { label: "Cost reduction", value: "19%", trend: "avg. portfolio" },
-  { label: "Risk reduction", value: "41%", trend: "modeled exposure" },
-  { label: "Ethical compliance", value: "94%", trend: "score index" },
+  { labelKey: "roiIncrease", value: "28%", trendKey: "roiTrend" },
+  { labelKey: "costReduction", value: "19%", trendKey: "costTrend" },
+  { labelKey: "riskReduction", value: "41%", trendKey: "riskTrend" },
+  { labelKey: "ethicsScore", value: "94%", trendKey: "ethicsTrend" },
 ] as const;
 
 export const FAQ_ITEMS = [
-  {
-    question: "What is Simpack?",
-    answer:
-      "Simpack is an AI-powered investment simulation platform that helps businesses evaluate ROI, risk, and ethical impact of AI investments before making decisions.",
-  },
-  {
-    question: "How does the AI model work?",
-    answer:
-      "Our models combine financial forecasting, risk modeling, and ethics scoring using proprietary algorithms trained on enterprise investment data. You input parameters; Simpack runs simulations and surfaces decision-ready insights.",
-  },
-  {
-    question: "Is Simpack accurate?",
-    answer:
-      "Simpack provides probabilistic forecasts with confidence intervals, not guarantees. Accuracy improves with quality input data and is validated against historical benchmarks. We recommend using it as decision support alongside expert judgment.",
-  },
-  {
-    question: "Is it suitable for small businesses?",
-    answer:
-      "Yes. Our Starter tier is designed for SMEs, while Pro and Enterprise scale for larger teams with advanced scenarios, integrations, and dedicated support.",
-  },
-  {
-    question: "Can I export reports?",
-    answer:
-      "All plans include PDF export. Pro and Enterprise add branded templates, scheduled reports, and API access for embedding insights in your workflows.",
-  },
+  { questionKey: "q1", answerKey: "a1" },
+  { questionKey: "q2", answerKey: "a2" },
+  { questionKey: "q3", answerKey: "a3" },
+  { questionKey: "q4", answerKey: "a4" },
+  { questionKey: "q5", answerKey: "a5" },
 ] as const;
 
 export const PRICING_TIERS = [
   {
-    name: "Starter",
+    nameKey: "starter",
     price: "€49",
     period: "/month",
-    description: "For teams exploring AI investment decisions.",
-    features: [
-      "5 simulations per month",
-      "ROI & risk modeling",
-      "Basic ethics scoring",
-      "PDF export (5/month)",
-      "Email support",
+    descriptionKey: "starterDesc",
+    featureKeys: [
+      "starterF1",
+      "starterF2",
+      "starterF3",
+      "starterF4",
+      "starterF5",
     ],
-    cta: "Start free trial",
+    ctaKey: "ctaTrial",
     highlighted: false,
   },
   {
-    name: "Pro",
+    nameKey: "pro",
     price: "€149",
     period: "/month",
-    description: "For growing teams making regular investment calls.",
-    features: [
-      "Unlimited simulations",
-      "What-if scenario builder",
-      "Advanced ethics scoring",
-      "Branded PDF reports",
-      "Cashflow forecasting",
-      "Priority support",
+    descriptionKey: "proDesc",
+    featureKeys: [
+      "proF1",
+      "proF2",
+      "proF3",
+      "proF4",
+      "proF5",
+      "proF6",
     ],
-    cta: "Start free trial",
+    ctaKey: "ctaTrial",
     highlighted: true,
-    badge: "Most Popular",
+    badgeKey: "mostPopular",
   },
   {
-    name: "Enterprise",
+    nameKey: "enterprise",
     price: "Custom",
     period: "",
-    description: "For organizations with complex portfolios and compliance needs.",
-    features: [
-      "Everything in Pro",
-      "SSO & SAML",
-      "Custom AI model tuning",
-      "Dedicated success manager",
-      "SLA & audit logs",
-      "On-premise option",
+    descriptionKey: "enterpriseDesc",
+    featureKeys: [
+      "entF1",
+      "entF2",
+      "entF3",
+      "entF4",
+      "entF5",
+      "entF6",
     ],
-    cta: "Contact sales",
+    ctaKey: "ctaSales",
     highlighted: false,
   },
 ] as const;

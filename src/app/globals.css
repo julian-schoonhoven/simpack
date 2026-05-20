@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
-@custom-variant dark (@media (prefers-color-scheme: dark));
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* Brand tokens — light (default) */
-:root {
+/* Light theme (default) */
+:root,
+.light {
   --sp-background: #f8fafc;
   --sp-foreground: #0f172a;
   --sp-muted: #64748b;
@@ -12,19 +13,19 @@
   --sp-surface-elevated: #f1f5f9;
   --sp-navy-muted: #1e293b;
   --sp-teal-muted: #ccfbf1;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sp-background: #0f172a;
-    --sp-foreground: #f8fafc;
-    --sp-muted: #94a3b8;
-    --sp-border: #1e293b;
-    --sp-surface: #1e293b;
-    --sp-surface-elevated: #162032;
-    --sp-navy-muted: #334155;
-    --sp-teal-muted: #134e4a;
-  }
+.dark {
+  --sp-background: #0f172a;
+  --sp-foreground: #f8fafc;
+  --sp-muted: #94a3b8;
+  --sp-border: #1e293b;
+  --sp-surface: #1e293b;
+  --sp-surface-elevated: #162032;
+  --sp-navy-muted: #334155;
+  --sp-teal-muted: #134e4a;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -52,12 +53,13 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    color-scheme: light dark;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
@@ -81,15 +83,6 @@
     background-clip: text;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .text-gradient {
-      background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 50%, #f8fafc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-  }
-
   .text-gradient-accent {
     background: linear-gradient(135deg, #14b8a6 0%, #0d9488 55%, #0f766e 100%);
     -webkit-background-clip: text;
@@ -98,16 +91,14 @@
   }
 
   .glass {
-    background: rgb(255 255 255 / 0.72);
+    background: rgb(255 255 255 / 0.78);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .glass {
-      background: rgb(15 23 42 / 0.82);
-      border-color: rgb(30 41 59 / 0.6);
-    }
+  .dark .glass {
+    background: rgb(15 23 42 / 0.85);
+    border-color: rgb(30 41 59 / 0.65);
   }
 
   .section-padding {

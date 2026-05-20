@@ -7,13 +7,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
+import { LanguageSelector } from "@/components/layout/LanguageSelector";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { NAV_LINKS } from "@/lib/constants";
+import { useLanguage } from "@/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -35,6 +39,9 @@ export function Navbar() {
     return href;
   };
 
+  const navLabel = (key: (typeof NAV_LINKS)[number]["labelKey"]) =>
+    t.nav[key];
+
   return (
     <header
       className={cn(
@@ -45,40 +52,46 @@ export function Navbar() {
       )}
     >
       <nav
-        className="container-wide mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8"
+        className="container-wide mx-auto flex h-16 items-center justify-between gap-3 px-4 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
         <Logo size="sm" />
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-0.5 lg:flex">
           {NAV_LINKS.map((link) => (
-            <li key={link.label}>
+            <li key={link.labelKey}>
               <Link
                 href={resolveHref(link.href)}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-slate-100/80 hover:text-foreground"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-surface-elevated hover:text-foreground"
               >
-                {link.label}
+                {navLabel(link.labelKey)}
               </Link>
             </li>
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2 lg:flex">
+          <LanguageSelector />
+          <ThemeToggle />
           <Button href={isHome ? "#home" : "/#home"} size="sm" variant="primary">
-            Start
+            {t.nav.start}
           </Button>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-foreground lg:hidden"
-          onClick={() => setOpen(!open)}
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <LanguageSelector />
+          <ThemeToggle />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-foreground"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -88,7 +101,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 z-40 bg-background/95 backdrop-blur-md lg:hidden"
+            className="fixed inset-0 top-16 z-40 bg-background/98 backdrop-blur-md lg:hidden"
           >
             <motion.ul
               initial={{ opacity: 0, y: -8 }}
@@ -98,13 +111,13 @@ export function Navbar() {
               className="flex flex-col gap-1 p-4"
             >
               {NAV_LINKS.map((link) => (
-                <li key={link.label}>
+                <li key={link.labelKey}>
                   <Link
                     href={resolveHref(link.href)}
                     onClick={() => setOpen(false)}
-                    className="block rounded-xl px-4 py-3.5 text-base font-medium text-foreground transition-colors hover:bg-slate-100"
+                    className="block rounded-xl px-4 py-3.5 text-base font-medium text-foreground transition-colors hover:bg-surface-elevated"
                   >
-                    {link.label}
+                    {navLabel(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -115,7 +128,7 @@ export function Navbar() {
                   className="w-full"
                   onClick={() => setOpen(false)}
                 >
-                  Start
+                  {t.nav.start}
                 </Button>
               </li>
             </motion.ul>

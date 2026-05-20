@@ -4,16 +4,20 @@ import { motion } from "framer-motion";
 import { ArrowRight, Database, Cpu, LineChart } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { HOW_STEPS } from "@/lib/constants";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const stepIcons = [Database, Cpu, LineChart];
 
 export function HowItWorks() {
+  const { t } = useLanguage();
+  const hw = t.how;
+
   return (
-    <Section id="how">
+    <Section id="how" className="bg-background">
       <SectionHeader
-        eyebrow="Process"
-        title="How it works"
-        description="From data input to decision-ready output in three streamlined steps."
+        eyebrow={hw.eyebrow}
+        title={hw.title}
+        description={hw.description}
       />
 
       <div className="relative">
@@ -45,10 +49,10 @@ export function HowItWorks() {
                 </div>
 
                 <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                  {step.title}
+                  {hw[step.titleKey as keyof typeof hw]}
                 </h3>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
-                  {step.description}
+                  {hw[step.descriptionKey as keyof typeof hw]}
                 </p>
 
                 {i < HOW_STEPS.length - 1 && (

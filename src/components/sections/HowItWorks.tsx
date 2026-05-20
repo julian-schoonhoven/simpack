@@ -40,7 +40,7 @@ export function HowItWorks() {
                   )}
                 </div>
 
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-white shadow-sm">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-surface shadow-sm">
                   <Icon className="h-6 w-6 text-accent" strokeWidth={1.5} />
                 </div>
 

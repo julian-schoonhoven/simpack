@@ -17,7 +17,7 @@ export function FAQ() {
         description="Everything you need to know before your first simulation."
       />
 
-      <div className="mx-auto max-w-2xl divide-y divide-border rounded-2xl border border-border bg-white shadow-sm">
+      <div className="mx-auto max-w-2xl divide-y divide-border rounded-2xl border border-border bg-surface shadow-sm">
         {FAQ_ITEMS.map((item, i) => {
           const isOpen = openIndex === i;
           return (
@@ -25,7 +25,7 @@ export function FAQ() {
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-slate-50/80 sm:px-6"
+                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-teal-500/5 sm:px-6"
                 aria-expanded={isOpen}
               >
                 <span className="font-medium text-foreground pr-2">

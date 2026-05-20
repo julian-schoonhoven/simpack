@@ -42,9 +42,9 @@ export function Features() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.06, duration: 0.4 }}
               whileHover={{ y: -6 }}
-              className="group rounded-2xl border border-border bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-slate-200/50 sm:p-7"
+              className="group rounded-2xl border border-border bg-surface p-6 shadow-sm transition-shadow duration-300 hover:border-accent/25 hover:shadow-lg hover:shadow-teal-500/10 sm:p-7"
             >
-              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 text-accent transition-colors group-hover:from-accent/10 group-hover:to-violet-100">
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-teal-50 to-cyan-50 text-accent transition-colors group-hover:from-accent/15 group-hover:to-teal-100 dark:from-teal-950/50 dark:to-navy-muted">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
               <h3 className="text-lg font-semibold tracking-tight text-foreground">

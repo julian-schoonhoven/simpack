@@ -18,8 +18,8 @@ export function PricingCards() {
           className={cn(
             "relative flex flex-col rounded-2xl border p-6 sm:p-8",
             tier.highlighted
-              ? "border-accent bg-white shadow-xl shadow-blue-500/10 ring-1 ring-accent/20 lg:scale-[1.02] lg:-my-2 lg:py-10 z-10"
-              : "border-border bg-white shadow-sm"
+              ? "border-accent bg-surface shadow-xl shadow-teal-500/15 ring-1 ring-accent/25 lg:scale-[1.02] lg:-my-2 lg:py-10 z-10"
+              : "border-border bg-surface shadow-sm"
           )}
         >
           {"badge" in tier && tier.badge && (
@@ -47,7 +47,7 @@ export function PricingCards() {
                 <Check
                   className={cn(
                     "mt-0.5 h-4 w-4 shrink-0",
-                    tier.highlighted ? "text-accent" : "text-emerald-600"
+                    tier.highlighted ? "text-accent" : "text-accent/80"
                   )}
                   strokeWidth={2.5}
                 />

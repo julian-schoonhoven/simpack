@@ -13,13 +13,13 @@ export function Impact() {
     <Section id="impact" className="bg-navy text-white overflow-hidden">
       <div className="relative">
         <div
-          className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+          className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-teal-500/15 blur-3xl"
           aria-hidden
         />
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
           <div>
-            <p className="text-sm font-medium tracking-wide text-blue-300 uppercase mb-3">
+            <p className="text-sm font-medium tracking-wide text-teal-300 uppercase mb-3">
               Measurable outcomes
             </p>
             <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -51,7 +51,7 @@ export function Impact() {
                         <p className="mt-1 text-2xl font-semibold">{metric.value}</p>
                         <p className="mt-0.5 text-xs text-slate-400">{metric.trend}</p>
                       </div>
-                      <Icon className="h-4 w-4 text-blue-400/80" />
+                      <Icon className="h-4 w-4 text-teal-400/90" />
                     </div>
                   </motion.div>
                 );
@@ -80,7 +80,7 @@ export function Impact() {
               <span className="text-sm font-medium text-slate-300">
                 Portfolio impact dashboard
               </span>
-              <span className="rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-xs font-medium text-emerald-300">
+              <span className="rounded-full bg-teal-500/20 px-2.5 py-0.5 text-xs font-medium text-teal-300">
                 Live
               </span>
             </div>
@@ -96,7 +96,7 @@ export function Impact() {
                     {[35, 50, 42, 68].slice(0, 3).map((h, j) => (
                       <div
                         key={j}
-                        className="flex-1 rounded-sm bg-gradient-to-t from-blue-600/40 to-blue-400/80"
+                        className="flex-1 rounded-sm bg-gradient-to-t from-teal-700/50 to-teal-400/90"
                         style={{ height: `${h}%` }}
                       />
                     ))}
@@ -108,17 +108,17 @@ export function Impact() {
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs text-slate-400">
                 <span>ROI trajectory</span>
-                <span className="text-emerald-400">+28%</span>
+                <span className="text-teal-400">+28%</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-blue-500 to-indigo-400" />
+                <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-teal-500 to-teal-300" />
               </div>
               <div className="flex items-center justify-between text-xs text-slate-400">
                 <span>Risk exposure</span>
-                <span className="text-blue-300">-41%</span>
+                <span className="text-teal-300">-41%</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[41%] rounded-full bg-gradient-to-r from-violet-500/80 to-blue-400/80" />
+                <div className="h-full w-[41%] rounded-full bg-gradient-to-r from-teal-600/80 to-teal-400/70" />
               </div>
               <div className="flex items-center justify-between text-xs text-slate-400">
                 <span>Ethics compliance</span>
@@ -134,8 +134,8 @@ export function Impact() {
                   />
                   <defs>
                     <linearGradient id="impactGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#60a5fa" />
-                      <stop offset="100%" stopColor="#a78bfa" />
+                      <stop offset="0%" stopColor="#14b8a6" />
+                      <stop offset="100%" stopColor="#2dd4bf" />
                     </linearGradient>
                   </defs>
                 </svg>

@@ -12,10 +12,10 @@ export function CTABanner() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-slate-900 via-navy to-slate-900 px-6 py-12 text-center sm:px-12 sm:py-16"
+          className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-navy via-navy to-navy-muted px-6 py-12 text-center sm:px-12 sm:py-16"
         >
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-500/25 via-transparent to-transparent"
             aria-hidden
           />
           <h2 className="relative text-2xl font-semibold tracking-tight text-white sm:text-3xl">

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
+type ButtonVariant = "primary" | "accent" | "secondary" | "ghost" | "outline";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,12 +16,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-foreground text-white shadow-lg shadow-foreground/10 hover:bg-navy-muted hover:shadow-xl hover:shadow-foreground/15 active:scale-[0.98]",
+    "bg-navy text-white shadow-lg shadow-navy/15 hover:bg-navy-muted hover:shadow-xl hover:shadow-teal-500/10 active:scale-[0.98]",
+  accent:
+    "bg-accent text-white shadow-lg shadow-accent/25 hover:bg-accent-hover hover:shadow-xl hover:shadow-accent/30 active:scale-[0.98]",
   secondary:
-    "bg-white text-foreground border border-border shadow-sm hover:bg-surface-elevated hover:border-slate-300 active:scale-[0.98]",
-  ghost: "text-foreground hover:bg-slate-100 active:scale-[0.98]",
+    "bg-surface text-foreground border border-border shadow-sm hover:bg-surface-elevated hover:border-teal-500/30 dark:hover:border-teal-500/40 active:scale-[0.98]",
+  ghost:
+    "text-foreground hover:bg-surface-elevated dark:hover:bg-navy-muted active:scale-[0.98]",
   outline:
-    "border border-border text-foreground bg-transparent hover:bg-surface-elevated active:scale-[0.98]",
+    "border border-border text-foreground bg-transparent hover:border-accent/40 hover:bg-accent/5 active:scale-[0.98]",
 };
 
 const sizes: Record<ButtonSize, string> = {

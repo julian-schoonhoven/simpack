@@ -12,28 +12,28 @@ interface SimpackMarkProps {
 
 const palettes = {
   color: {
-    container: "#0A101F",
-    slab: "#FAFBFC",
-    node: "#1E5EFF",
-    bridge: "#1E5EFF",
+    container: "#0F172A",
+    slab: "#F8FAFC",
+    node: "#14B8A6",
+    bridge: "#14B8A6",
   },
   mono: {
-    container: "#0A101F",
-    slab: "#0A101F",
-    node: "#0A101F",
-    bridge: "#0A101F",
+    container: "#0F172A",
+    slab: "#0F172A",
+    node: "#0F172A",
+    bridge: "#0F172A",
   },
   "on-dark": {
     container: "transparent",
-    slab: "#FAFBFC",
-    node: "#38BDF8",
-    bridge: "#38BDF8",
+    slab: "#F8FAFC",
+    node: "#14B8A6",
+    bridge: "#14B8A6",
   },
   favicon: {
-    container: "#0A101F",
-    slab: "#FAFBFC",
-    node: "#1E5EFF",
-    bridge: "#1E5EFF",
+    container: "#0F172A",
+    slab: "#F8FAFC",
+    node: "#14B8A6",
+    bridge: "#14B8A6",
   },
 } as const;
 
@@ -69,19 +69,10 @@ export function SimpackMark({
         />
       )}
 
-      {/* Top slab — input / upstream data */}
       <rect x="9" y="9" width="22" height="7" rx="2.5" fill={c.slab} />
-
-      {/* Middle slab — simulation junction */}
       <rect x="17" y="20" width="22" height="7" rx="2.5" fill={c.slab} />
-
-      {/* Decision node — scenario branch point */}
       <circle cx="28" cy="23.5" r="2.25" fill={c.node} />
-
-      {/* Bottom slab — output / decision */}
       <rect x="9" y="31" width="22" height="7" rx="2.5" fill={c.slab} />
-
-      {/* Path connectors — structured flow between stages */}
       <path
         d="M28 16.5 L28 20"
         stroke={c.bridge}
@@ -112,11 +103,11 @@ export function SimpackFaviconMark({ className }: { className?: string }) {
       className={className}
       aria-hidden
     >
-      <rect width="16" height="16" rx="4" fill="#0A101F" />
-      <rect x="1" y="1" width="7" height="3" rx="1" fill="#FAFBFC" />
-      <rect x="5" y="6" width="7" height="3" rx="1" fill="#FAFBFC" />
-      <rect x="1" y="11" width="7" height="3" rx="1" fill="#FAFBFC" />
-      <rect x="7" y="7" width="2" height="2" rx="0.5" fill="#1E5EFF" />
+      <rect width="16" height="16" rx="4" fill="#0F172A" />
+      <rect x="1" y="1" width="7" height="3" rx="1" fill="#F8FAFC" />
+      <rect x="5" y="6" width="7" height="3" rx="1" fill="#F8FAFC" />
+      <rect x="1" y="11" width="7" height="3" rx="1" fill="#F8FAFC" />
+      <rect x="7" y="7" width="2" height="2" rx="0.5" fill="#14B8A6" />
     </svg>
   );
 }

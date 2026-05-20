@@ -38,7 +38,7 @@ export function About() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl border border-border bg-surface-elevated p-6 sm:p-8"
+          className="rounded-2xl border border-border bg-surface p-6 sm:p-8"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-muted">
             Leadership

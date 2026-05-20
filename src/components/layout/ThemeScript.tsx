@@ -11,7 +11,7 @@ export function ThemeScript() {
     root.style.colorScheme = theme;
     var l = localStorage.getItem('simpack-locale') || 'en';
     root.lang = l;
-    root.dir = l === 'ar' ? 'rtl' : 'ltr';
+    root.dir = l === 'ar' ? 'rtl' : 'ltr'; /* nl, en, zh, hi, es, fr, bn, ru: ltr */
   } catch (e) {}
 })();
 `;

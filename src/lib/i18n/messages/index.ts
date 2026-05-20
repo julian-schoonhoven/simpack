@@ -1,5 +1,6 @@
 import type { LocaleCode } from "../locales";
 import { en } from "./en";
+import { nl } from "./nl";
 import { zh } from "./zh";
 import { hi } from "./hi";
 import { es } from "./es";
@@ -11,6 +12,7 @@ import type { Messages } from "./en";
 
 export const messages: Record<LocaleCode, Messages> = {
   en,
+  nl,
   zh,
   hi,
   es,

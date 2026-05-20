@@ -171,6 +171,18 @@ export const en = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
   },
-} as const;
+};
 
-export type Messages = typeof en;
+export type Messages = {
+  nav: Record<string, string>;
+  hero: Record<string, string>;
+  features: Record<string, string>;
+  how: Record<string, string>;
+  impact: Record<string, string>;
+  about: Record<string, string>;
+  faq: Record<string, string>;
+  cta: Record<string, string>;
+  pricing: Record<string, string>;
+  footer: Record<string, string>;
+  a11y: Record<string, string>;
+};

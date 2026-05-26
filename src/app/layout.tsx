@@ -4,7 +4,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import { Providers } from "@/providers/Providers";
-import { asset } from "@/lib/paths";
 import "./globals.css";
 
 const inter = Inter({
@@ -49,15 +48,13 @@ export const metadata: Metadata = {
     "Simpack helps companies calculate ROI, risk, and ethical impact of AI investments in real time, enabling faster and better business decisions.",
   icons: {
     icon: [
-      { url: asset("/favicon.ico"), sizes: "any" },
-      { url: asset("/favicon.svg"), type: "image/svg+xml" },
-      { url: asset("/favicon-16.svg"), sizes: "16x16", type: "image/svg+xml" },
-      { url: asset("/favicon-32.svg"), sizes: "32x32", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16.svg", sizes: "16x16", type: "image/svg+xml" },
+      { url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
     ],
-    apple: [
-      { url: asset("/favicon-32.svg"), sizes: "32x32", type: "image/svg+xml" },
-    ],
-    shortcut: asset("/favicon.ico"),
+    apple: [{ url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" }],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     title: "Simpack — AI Investment Intelligence",

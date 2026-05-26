@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { PRICING_URL } from "@/lib/constants";
+import { HOME_URL, PRICING_URL } from "@/lib/constants";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export function CTABanner() {
@@ -56,7 +56,7 @@ export function CTABanner() {
           </p>
 
           <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="#home" variant="accent" size="lg" className="w-full sm:w-auto">
+            <Button href={HOME_URL} variant="accent" size="lg" className="w-full sm:w-auto">
               {t.cta.try}
               <ArrowRight className="h-4 w-4" />
             </Button>

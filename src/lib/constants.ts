@@ -1,10 +1,14 @@
 /**
- * Canonical pricing URL. Always points at the parent domain so the
- * link is identical whether Simpack is viewed via the proxy at
- * julianschoonhoven.com/labs/simpack or directly on Vercel.
+ * Canonical site origin (the parent-domain URL the app is served at).
+ * Used so navigation links survive the reverse proxy at
+ * julianschoonhoven.com/labs/simpack, which strips the prefix before
+ * forwarding to Vercel. Anchor and route links must point at the
+ * parent URL — relative `/` would resolve to the parent root, not the
+ * proxied app.
  */
-export const PRICING_URL =
-  "https://julianschoonhoven.com/labs/simpack/pricing";
+export const SITE_URL = "https://julianschoonhoven.com/labs/simpack";
+export const HOME_URL = `${SITE_URL}#home`;
+export const PRICING_URL = `${SITE_URL}/pricing`;
 
 export const NAV_LINKS = [
   { labelKey: "features", href: "#features" },

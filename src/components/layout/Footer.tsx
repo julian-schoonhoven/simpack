@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { NAV_LINKS, PRICING_URL } from "@/lib/constants";
+import { HOME_URL, NAV_LINKS, PRICING_URL, SITE_URL } from "@/lib/constants";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export function Footer() {
@@ -18,7 +18,7 @@ export function Footer() {
             <Logo />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">{f.tagline}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="#home" variant="accent" size="sm">
+              <Button href={HOME_URL} variant="accent" size="sm">
                 {f.try}
               </Button>
               <Button href={PRICING_URL} variant="secondary" size="sm">
@@ -36,7 +36,11 @@ export function Footer() {
                 {NAV_LINKS.slice(0, 4).map((link) => (
                   <li key={link.labelKey}>
                     <Link
-                      href={link.href.startsWith("#") ? `/${link.href}` : link.href}
+                      href={
+                        link.href.startsWith("#")
+                          ? `${SITE_URL}${link.href}`
+                          : link.href
+                      }
                       className="text-sm text-foreground/80 transition-colors hover:text-accent"
                     >
                       {t.nav[link.labelKey]}
@@ -53,7 +57,11 @@ export function Footer() {
                 {NAV_LINKS.slice(4).map((link) => (
                   <li key={link.labelKey}>
                     <Link
-                      href={link.href.startsWith("#") ? `/${link.href}` : link.href}
+                      href={
+                        link.href.startsWith("#")
+                          ? `${SITE_URL}${link.href}`
+                          : link.href
+                      }
                       className="text-sm text-foreground/80 transition-colors hover:text-accent"
                     >
                       {t.nav[link.labelKey]}
@@ -69,7 +77,7 @@ export function Footer() {
               <ul className="mt-4 space-y-2">
                 <li>
                   <Link
-                    href="/privacy"
+                    href={`${SITE_URL}/privacy`}
                     className="text-sm text-foreground/80 transition-colors hover:text-accent"
                   >
                     {f.privacy}
@@ -77,7 +85,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/terms"
+                    href={`${SITE_URL}/terms`}
                     className="text-sm text-foreground/80 transition-colors hover:text-accent"
                   >
                     {f.terms}

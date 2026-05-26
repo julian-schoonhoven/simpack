@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { PRICING_TIERS } from "@/lib/constants";
+import { HOME_URL, PRICING_TIERS } from "@/lib/constants";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
@@ -65,7 +65,7 @@ export function PricingCards() {
           </ul>
 
           <Button
-            href="#home"
+            href={HOME_URL}
             variant={tier.highlighted ? "accent" : "secondary"}
             className="mt-8 w-full"
             size="lg"

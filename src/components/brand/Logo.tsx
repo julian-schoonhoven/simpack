@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SimpackMark } from "@/components/brand/SimpackMark";
+import { HOME_URL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -26,7 +27,7 @@ export function Logo({
 
   return (
     <Link
-      href="/#home"
+      href={HOME_URL}
       className={cn("inline-flex items-center gap-2.5 group", className)}
       aria-label="Simpack home"
     >

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
 
 export interface LegalSection {
   id: string;
@@ -30,7 +31,7 @@ export function LegalPageLayout({
       <header className="border-b border-border bg-surface-elevated/50">
         <div className="container-narrow section-padding !pb-12 pt-28 sm:pt-32">
           <Link
-            href="/"
+            href={SITE_URL}
             className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />

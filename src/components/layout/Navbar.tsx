@@ -9,7 +9,7 @@ import { Logo } from "@/components/brand/Logo";
 import { Button, startButtonDarkStyles } from "@/components/ui/Button";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
-import { NAV_LINKS } from "@/lib/constants";
+import { HOME_URL, NAV_LINKS, SITE_URL } from "@/lib/constants";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,7 @@ export function Navbar() {
   }, [open]);
 
   const resolveHref = (href: string) => {
-    if (href.startsWith("#") && !isHome) return `/${href}`;
+    if (href.startsWith("#") && !isHome) return `${SITE_URL}${href}`;
     return href;
   };
 
@@ -75,7 +75,7 @@ export function Navbar() {
           <LanguageSelector />
           <ThemeToggle />
           <Button
-            href={isHome ? "#home" : "/#home"}
+            href={HOME_URL}
             size="sm"
             variant="primary"
             className={startButtonDarkStyles}
@@ -128,7 +128,7 @@ export function Navbar() {
               ))}
               <li className="mt-4 pt-4 border-t border-border">
                 <Button
-                  href={isHome ? "#home" : "/#home"}
+                  href={HOME_URL}
                   size="lg"
                   variant="primary"
                   className={cn("w-full", startButtonDarkStyles)}

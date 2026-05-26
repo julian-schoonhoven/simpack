@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, PRICING_URL } from "@/lib/constants";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export function Footer() {
@@ -21,7 +21,7 @@ export function Footer() {
               <Button href="#home" variant="accent" size="sm">
                 {f.try}
               </Button>
-              <Button href="/pricing" variant="secondary" size="sm">
+              <Button href={PRICING_URL} variant="secondary" size="sm">
                 {f.viewPricing}
               </Button>
             </div>

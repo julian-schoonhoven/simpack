@@ -75,7 +75,7 @@ export function Hero() {
               {h.tryCta}
               <ArrowRight className="h-4 w-4" />
             </Button>
-            <Button href="#how" variant="secondary" size="lg" className="w-full sm:w-auto">
+            <Button href="#demo" variant="secondary" size="lg" className="w-full sm:w-auto">
               <Play className="h-4 w-4 fill-current" />
               {h.demoCta}
             </Button>

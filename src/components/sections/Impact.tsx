@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { TrendingUp, Minus, ShieldCheck, Scale } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { IMPACT_METRICS } from "@/lib/constants";
+import { IMPACT_METRICS, PRICING_URL } from "@/lib/constants";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
@@ -68,7 +68,7 @@ export function Impact() {
           </div>
 
           <div className="mt-8">
-            <Button href="/pricing" variant="accent">
+            <Button href={PRICING_URL} variant="accent">
               {imp.explorePlans}
             </Button>
           </div>

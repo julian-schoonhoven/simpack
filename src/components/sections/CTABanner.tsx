@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { PRICING_URL } from "@/lib/constants";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export function CTABanner() {
@@ -60,7 +61,7 @@ export function CTABanner() {
               <ArrowRight className="h-4 w-4" />
             </Button>
             <Button
-              href="/pricing"
+              href={PRICING_URL}
               variant="outline"
               size="lg"
               className={[

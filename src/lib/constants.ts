@@ -1,10 +1,19 @@
+/**
+ * Canonical pricing URL. Always points at the parent domain so the
+ * link is identical whether Simpack is viewed via the proxy at
+ * julianschoonhoven.com/labs/simpack or directly on Vercel.
+ */
+export const PRICING_URL =
+  "https://julianschoonhoven.com/labs/simpack/pricing";
+
 export const NAV_LINKS = [
   { labelKey: "features", href: "#features" },
   { labelKey: "how", href: "#how" },
+  { labelKey: "demo", href: "#demo" },
   { labelKey: "impact", href: "#impact" },
   { labelKey: "about", href: "#about" },
   { labelKey: "faq", href: "#faq" },
-  { labelKey: "pricing", href: "/pricing" },
+  { labelKey: "pricing", href: PRICING_URL },
 ] as const;
 
 export const HERO_STATS = [

@@ -2,6 +2,7 @@ export const en = {
   nav: {
     features: "Features",
     how: "How",
+    demo: "Demo",
     impact: "Impact",
     about: "About",
     faq: "FAQ",
@@ -115,6 +116,56 @@ export const en = {
     try: "Try Simpack",
     pricing: "View Pricing",
   },
+  demo: {
+    eyebrow: "Interactive demo",
+    title: "Try Simpack with your own numbers",
+    description:
+      "Tune the inputs to see live ROI, risk, and ethics projections — no signup required.",
+    inputsTitle: "Configure your investment",
+    resultsTitle: "Simulation results",
+    amountLabel: "Investment amount",
+    horizonLabel: "Time horizon",
+    industryLabel: "Industry",
+    useCaseLabel: "AI use case",
+    toleranceLabel: "Risk tolerance",
+    monthsShort: "mo",
+    resetLabel: "Reset",
+    roiLabel: "Projected ROI",
+    riskLabel: "Risk score",
+    ethicsLabel: "Ethics score",
+    cashflowTitle: "Net cashflow projection",
+    cashflowSubtitle: "Cumulative position over your horizon",
+    initialOutlay: "Initial outlay",
+    netReturn: "Net return",
+    breakeven: "Breakeven",
+    verdictTitle: "Recommendation",
+    verdictStrong: "Strong recommendation",
+    verdictStrongDesc:
+      "High return, contained risk, and strong ethics alignment.",
+    verdictPromising: "Promising opportunity",
+    verdictPromisingDesc:
+      "Attractive upside with manageable risk — worth modeling deeper.",
+    verdictCaution: "Proceed with caution",
+    verdictCautionDesc:
+      "Risk exposure is elevated — validate assumptions before committing.",
+    verdictConservative: "Conservative play",
+    verdictConservativeDesc:
+      "Stable, low-volatility profile — ideal for first AI pilots.",
+    industrySaas: "SaaS",
+    industryFintech: "Fintech",
+    industryHealthcare: "Healthcare",
+    industryRetail: "Retail",
+    industryManufacturing: "Manufacturing",
+    useCaseSupport: "Customer support",
+    useCasePredictive: "Predictive analytics",
+    useCaseContent: "Content generation",
+    useCaseOps: "Operations automation",
+    useCaseRnd: "R&D acceleration",
+    toleranceConservative: "Conservative",
+    toleranceBalanced: "Balanced",
+    toleranceAggressive: "Aggressive",
+    poweredBy: "Powered by the Simpack simulation engine",
+  },
   pricing: {
     eyebrow: "Plans",
     title: "Pricing",
@@ -182,6 +233,7 @@ export type Messages = {
   about: Record<string, string>;
   faq: Record<string, string>;
   cta: Record<string, string>;
+  demo: Record<string, string>;
   pricing: Record<string, string>;
   footer: Record<string, string>;
   a11y: Record<string, string>;

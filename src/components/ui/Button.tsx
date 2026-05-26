@@ -59,15 +59,7 @@ export function Button({
     const isExternal = href.startsWith("http");
     const isHash = href.startsWith("#");
 
-    if (isExternal) {
-      return (
-        <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      );
-    }
-
-    if (isHash) {
+    if (isExternal || isHash) {
       return (
         <a href={href} className={classes}>
           {children}

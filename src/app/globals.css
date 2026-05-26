@@ -113,6 +113,66 @@
     @apply mx-auto max-w-7xl;
   }
 
+  /* Demo section range slider — teal accent, cross-browser */
+  .simpack-range {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to right,
+      #14b8a6 var(--sp-range-progress, 50%),
+      var(--sp-surface-elevated) var(--sp-range-progress, 50%)
+    );
+    outline: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .simpack-range::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 2px solid #14b8a6;
+    box-shadow: 0 1px 4px rgb(20 184 166 / 0.3);
+    cursor: grab;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .simpack-range::-webkit-slider-thumb:hover {
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgb(20 184 166 / 0.45);
+  }
+  .simpack-range::-webkit-slider-thumb:active {
+    cursor: grabbing;
+  }
+  .simpack-range::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 2px solid #14b8a6;
+    box-shadow: 0 1px 4px rgb(20 184 166 / 0.3);
+    cursor: grab;
+  }
+  .simpack-range:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px rgb(20 184 166 / 0.25);
+  }
+  .dark .simpack-range {
+    background: linear-gradient(
+      to right,
+      #14b8a6 var(--sp-range-progress, 50%),
+      #162032 var(--sp-range-progress, 50%)
+    );
+  }
+  .dark .simpack-range::-webkit-slider-thumb,
+  .dark .simpack-range::-moz-range-thumb {
+    background: #0f172a;
+    border-color: #2dd4bf;
+  }
+
   /* Native script labels in language selector (Safari-safe system fallbacks) */
   .lang-label {
     font-family:

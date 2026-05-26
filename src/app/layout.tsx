@@ -6,6 +6,10 @@ import { ThemeScript } from "@/components/layout/ThemeScript";
 import { Providers } from "@/providers/Providers";
 import "./globals.css";
 
+const SIMPACK_ASSET_ORIGIN =
+  process.env.NEXT_PUBLIC_ASSET_ORIGIN?.trim() ||
+  "https://simpack-tau.vercel.app";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -47,18 +51,31 @@ export const metadata: Metadata = {
   description:
     "Simpack helps companies calculate ROI, risk, and ethical impact of AI investments in real time, enabling faster and better business decisions.",
   icons: {
-    // Subpath prefix kept in sync with basePath in next.config.ts so that
-    // favicons load through the parent reverse proxy.
+    // Absolute URLs so favicons load both when accessed directly on
+    // Vercel and when served via the julianschoonhoven.com proxy
+    // (which only forwards /labs/simpack/* and not /favicon.*).
     icon: [
-      { url: "/labs/simpack/favicon.ico", sizes: "any" },
-      { url: "/labs/simpack/favicon.svg", type: "image/svg+xml" },
-      { url: "/labs/simpack/favicon-16.svg", sizes: "16x16", type: "image/svg+xml" },
-      { url: "/labs/simpack/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
+      { url: `${SIMPACK_ASSET_ORIGIN}/favicon.ico`, sizes: "any" },
+      { url: `${SIMPACK_ASSET_ORIGIN}/favicon.svg`, type: "image/svg+xml" },
+      {
+        url: `${SIMPACK_ASSET_ORIGIN}/favicon-16.svg`,
+        sizes: "16x16",
+        type: "image/svg+xml",
+      },
+      {
+        url: `${SIMPACK_ASSET_ORIGIN}/favicon-32.svg`,
+        sizes: "32x32",
+        type: "image/svg+xml",
+      },
     ],
     apple: [
-      { url: "/labs/simpack/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
+      {
+        url: `${SIMPACK_ASSET_ORIGIN}/favicon-32.svg`,
+        sizes: "32x32",
+        type: "image/svg+xml",
+      },
     ],
-    shortcut: "/labs/simpack/favicon.ico",
+    shortcut: `${SIMPACK_ASSET_ORIGIN}/favicon.ico`,
   },
   openGraph: {
     title: "Simpack — AI Investment Intelligence",

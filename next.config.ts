@@ -1,18 +1,19 @@
 import type { NextConfig } from "next";
 
 /**
- * The app is embedded under julianschoonhoven.com/labs/simpack via a
- * reverse proxy that passes the path through verbatim. Next.js must
- * therefore emit routes and static assets under that subpath so the
- * parent domain can forward /_next/* and friends.
- *
- * Direct Vercel URL: simpack-tau.vercel.app/labs/simpack
+ * Static-asset origin. The app is also served through a reverse proxy
+ * at julianschoonhoven.com/labs/simpack which strips the prefix before
+ * forwarding to Vercel — so the app itself must respond at `/`, and
+ * /_next/* assets must be loaded directly from the Vercel host
+ * (otherwise they hit the parent domain and 404).
  */
-export const SIMPACK_BASE_PATH = "/labs/simpack";
+const SIMPACK_ASSET_ORIGIN =
+  process.env.NEXT_PUBLIC_ASSET_ORIGIN?.trim() ||
+  "https://simpack-tau.vercel.app";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  basePath: SIMPACK_BASE_PATH,
+  assetPrefix: SIMPACK_ASSET_ORIGIN,
   turbopack: {
     root: import.meta.dirname ?? process.cwd(),
   },

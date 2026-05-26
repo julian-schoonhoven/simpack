@@ -47,14 +47,18 @@ export const metadata: Metadata = {
   description:
     "Simpack helps companies calculate ROI, risk, and ethical impact of AI investments in real time, enabling faster and better business decisions.",
   icons: {
+    // Subpath prefix kept in sync with basePath in next.config.ts so that
+    // favicons load through the parent reverse proxy.
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon-16.svg", sizes: "16x16", type: "image/svg+xml" },
-      { url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
+      { url: "/labs/simpack/favicon.ico", sizes: "any" },
+      { url: "/labs/simpack/favicon.svg", type: "image/svg+xml" },
+      { url: "/labs/simpack/favicon-16.svg", sizes: "16x16", type: "image/svg+xml" },
+      { url: "/labs/simpack/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
     ],
-    apple: [{ url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" }],
-    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/labs/simpack/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
+    ],
+    shortcut: "/labs/simpack/favicon.ico",
   },
   openGraph: {
     title: "Simpack — AI Investment Intelligence",

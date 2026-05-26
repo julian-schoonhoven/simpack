@@ -6,7 +6,9 @@ import {
   Sparkles,
   TrendingUp,
   ShieldAlert,
-  Scale,
+  Leaf,
+  Users,
+  Landmark,
   RotateCcw,
   ArrowRight,
 } from "lucide-react";
@@ -30,46 +32,62 @@ type UseCaseId =
   | "rnd";
 type ToleranceId = "conservative" | "balanced" | "aggressive";
 
+interface EsgProfile {
+  e: number;
+  s: number;
+  g: number;
+}
 interface IndustryDef {
   id: IndustryId;
   labelKey: string;
   roiMult: number;
-  ethicsMult: number;
+  esg: EsgProfile;
 }
 interface UseCaseDef {
   id: UseCaseId;
   labelKey: string;
   roiMult: number;
-  ethicsMult: number;
   riskMult: number;
+  esg: EsgProfile;
 }
 interface ToleranceDef {
   id: ToleranceId;
   labelKey: string;
   roiMult: number;
   riskMult: number;
+  esgGovDelta: number;
 }
 
 const INDUSTRIES: IndustryDef[] = [
-  { id: "saas", labelKey: "industrySaas", roiMult: 1.15, ethicsMult: 0.88 },
+  {
+    id: "saas",
+    labelKey: "industrySaas",
+    roiMult: 1.15,
+    esg: { e: 0.78, s: 0.72, g: 0.85 },
+  },
   {
     id: "fintech",
     labelKey: "industryFintech",
     roiMult: 1.28,
-    ethicsMult: 0.72,
+    esg: { e: 0.62, s: 0.66, g: 0.78 },
   },
   {
     id: "healthcare",
     labelKey: "industryHealthcare",
     roiMult: 1.08,
-    ethicsMult: 0.96,
+    esg: { e: 0.62, s: 0.94, g: 0.88 },
   },
-  { id: "retail", labelKey: "industryRetail", roiMult: 1.05, ethicsMult: 0.82 },
+  {
+    id: "retail",
+    labelKey: "industryRetail",
+    roiMult: 1.05,
+    esg: { e: 0.55, s: 0.7, g: 0.7 },
+  },
   {
     id: "manufacturing",
     labelKey: "industryManufacturing",
     roiMult: 1.18,
-    ethicsMult: 0.8,
+    esg: { e: 0.42, s: 0.62, g: 0.7 },
   },
 ];
 
@@ -78,36 +96,36 @@ const USE_CASES: UseCaseDef[] = [
     id: "support",
     labelKey: "useCaseSupport",
     roiMult: 0.95,
-    ethicsMult: 0.94,
     riskMult: 0.7,
+    esg: { e: 0.78, s: 0.9, g: 0.85 },
   },
   {
     id: "predictive",
     labelKey: "useCasePredictive",
     roiMult: 1.3,
-    ethicsMult: 0.78,
     riskMult: 1.1,
+    esg: { e: 0.72, s: 0.55, g: 0.65 },
   },
   {
     id: "content",
     labelKey: "useCaseContent",
     roiMult: 1.12,
-    ethicsMult: 0.65,
     riskMult: 1.05,
+    esg: { e: 0.5, s: 0.6, g: 0.5 },
   },
   {
     id: "ops",
     labelKey: "useCaseOps",
     roiMult: 1.22,
-    ethicsMult: 0.87,
     riskMult: 0.85,
+    esg: { e: 0.9, s: 0.55, g: 0.78 },
   },
   {
     id: "rnd",
     labelKey: "useCaseRnd",
     roiMult: 1.42,
-    ethicsMult: 0.82,
     riskMult: 1.25,
+    esg: { e: 0.68, s: 0.78, g: 0.72 },
   },
 ];
 
@@ -117,18 +135,21 @@ const TOLERANCES: ToleranceDef[] = [
     labelKey: "toleranceConservative",
     roiMult: 0.86,
     riskMult: 0.7,
+    esgGovDelta: 4,
   },
   {
     id: "balanced",
     labelKey: "toleranceBalanced",
     roiMult: 1.0,
     riskMult: 1.0,
+    esgGovDelta: 0,
   },
   {
     id: "aggressive",
     labelKey: "toleranceAggressive",
     roiMult: 1.22,
     riskMult: 1.45,
+    esgGovDelta: -6,
   },
 ];
 
@@ -151,11 +172,18 @@ function clamp(n: number, lo: number, hi: number) {
   return Math.min(hi, Math.max(lo, n));
 }
 
+interface EsgScore {
+  overall: number;
+  e: number;
+  s: number;
+  g: number;
+}
+
 interface SimResult {
   roi: number;
   netReturn: number;
   risk: number;
-  ethics: number;
+  esg: EsgScore;
   breakevenMonth: number | null;
   cashflow: { month: number; value: number }[];
   verdictKey:
@@ -188,11 +216,32 @@ function simulate(state: typeof DEFAULT_STATE): SimResult {
     tolerance.riskMult;
   const risk = clamp(Math.round(rawRisk), 8, 95);
 
-  const ethics = clamp(
-    Math.round(industry.ethicsMult * useCase.ethicsMult * 100),
+  const horizonGovBoost = state.horizon >= 24 ? 3 : state.horizon >= 12 ? 1 : 0;
+  const e = clamp(
+    Math.round(((industry.esg.e + useCase.esg.e) / 2) * 100),
     20,
     99
   );
+  const s = clamp(
+    Math.round(((industry.esg.s + useCase.esg.s) / 2) * 100),
+    20,
+    99
+  );
+  const g = clamp(
+    Math.round(
+      ((industry.esg.g + useCase.esg.g) / 2) * 100 +
+        tolerance.esgGovDelta +
+        horizonGovBoost
+    ),
+    20,
+    99
+  );
+  const esg: EsgScore = {
+    e,
+    s,
+    g,
+    overall: Math.round((e + s + g) / 3),
+  };
 
   const steps = Math.min(state.horizon, 24);
   const stepMonths = state.horizon / steps;
@@ -211,12 +260,12 @@ function simulate(state: typeof DEFAULT_STATE): SimResult {
   }
 
   let verdictKey: SimResult["verdictKey"];
-  if (roi >= 36 && risk <= 50 && ethics >= 75) verdictKey = "verdictStrong";
-  else if (risk >= 65) verdictKey = "verdictCaution";
+  if (roi >= 36 && risk <= 50 && esg.overall >= 72) verdictKey = "verdictStrong";
+  else if (risk >= 65 || esg.overall < 55) verdictKey = "verdictCaution";
   else if (roi >= 22) verdictKey = "verdictPromising";
   else verdictKey = "verdictConservative";
 
-  return { roi, netReturn, risk, ethics, breakevenMonth, cashflow, verdictKey };
+  return { roi, netReturn, risk, esg, breakevenMonth, cashflow, verdictKey };
 }
 
 function formatCurrency(value: number) {
@@ -234,10 +283,30 @@ function riskTone(risk: number) {
   return { ring: "ring-red-500/30", text: "text-red-500", bar: "from-red-400 to-red-500" };
 }
 
-function ethicsTone(ethics: number) {
-  if (ethics >= 80) return { text: "text-emerald-500", bar: "from-emerald-400 to-emerald-500" };
-  if (ethics >= 60) return { text: "text-teal-500", bar: "from-teal-400 to-teal-500" };
-  return { text: "text-amber-500", bar: "from-amber-400 to-amber-500" };
+function esgTone(score: number) {
+  if (score >= 80)
+    return {
+      text: "text-emerald-500",
+      bar: "from-emerald-400 to-emerald-500",
+      bg: "bg-emerald-500/10",
+    };
+  if (score >= 65)
+    return {
+      text: "text-teal-500",
+      bar: "from-teal-400 to-teal-500",
+      bg: "bg-teal-500/10",
+    };
+  if (score >= 50)
+    return {
+      text: "text-amber-500",
+      bar: "from-amber-400 to-amber-500",
+      bg: "bg-amber-500/10",
+    };
+  return {
+    text: "text-red-500",
+    bar: "from-red-400 to-red-500",
+    bg: "bg-red-500/10",
+  };
 }
 
 interface CashflowChartProps {
@@ -499,7 +568,10 @@ export function Demo() {
   }, [result.verdictKey]);
 
   const rTone = riskTone(result.risk);
-  const eTone = ethicsTone(result.ethics);
+  const esgOverallTone = esgTone(result.esg.overall);
+  const eTone = esgTone(result.esg.e);
+  const sTone = esgTone(result.esg.s);
+  const gTone = esgTone(result.esg.g);
 
   return (
     <Section
@@ -698,32 +770,78 @@ export function Demo() {
             </MetricCard>
 
             <MetricCard
-              label={d.ethicsLabel}
-              valueKey={`${result.ethics}-eth`}
-              icon={<Scale className="h-4 w-4" />}
-              accent={eTone.text}
+              label={d.esgLabel}
+              valueKey={`${result.esg.overall}-esg`}
+              icon={<Leaf className="h-4 w-4" />}
+              accent={esgOverallTone.text}
             >
               <span
                 className={cn(
                   "text-2xl font-semibold tracking-tight tabular-nums sm:text-[1.65rem]",
-                  eTone.text
+                  esgOverallTone.text
                 )}
               >
-                {result.ethics}
+                {result.esg.overall}
                 <span className="text-sm font-medium text-muted">/100</span>
               </span>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-elevated">
                 <motion.div
                   initial={false}
-                  animate={{ width: `${result.ethics}%` }}
+                  animate={{ width: `${result.esg.overall}%` }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className={cn(
                     "h-full rounded-full bg-gradient-to-r",
-                    eTone.bar
+                    esgOverallTone.bar
                   )}
                 />
               </div>
             </MetricCard>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-border bg-surface-elevated/60 p-4 sm:p-5">
+            <div className="mb-3 flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  {d.esgBreakdownTitle}
+                </p>
+                <p className="text-xs text-muted">{d.esgBreakdownSubtitle}</p>
+              </div>
+              <span
+                className={cn(
+                  "rounded-full px-2.5 py-0.5 text-[11px] font-semibold tabular-nums",
+                  esgOverallTone.bg,
+                  esgOverallTone.text
+                )}
+              >
+                {result.esg.overall}/100
+              </span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <EsgPillar
+                letter="E"
+                label={d.esgEnvironmental}
+                short={d.esgEnvShort}
+                value={result.esg.e}
+                tone={eTone}
+                icon={<Leaf className="h-3.5 w-3.5" />}
+              />
+              <EsgPillar
+                letter="S"
+                label={d.esgSocial}
+                short={d.esgSocialShort}
+                value={result.esg.s}
+                tone={sTone}
+                icon={<Users className="h-3.5 w-3.5" />}
+              />
+              <EsgPillar
+                letter="G"
+                label={d.esgGovernance}
+                short={d.esgGovShort}
+                value={result.esg.g}
+                tone={gTone}
+                icon={<Landmark className="h-3.5 w-3.5" />}
+              />
+            </div>
           </div>
 
           <div className="mt-5">
@@ -838,6 +956,61 @@ export function Demo() {
         </motion.div>
       </div>
     </Section>
+  );
+}
+
+interface EsgPillarProps {
+  letter: "E" | "S" | "G";
+  label: string;
+  short: string;
+  value: number;
+  tone: { text: string; bar: string; bg: string };
+  icon: React.ReactNode;
+}
+
+function EsgPillar({ letter, label, short, value, tone, icon }: EsgPillarProps) {
+  return (
+    <div className="rounded-xl border border-border/60 bg-surface p-3">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <span
+            className={cn(
+              "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg font-semibold",
+              tone.bg,
+              tone.text
+            )}
+            aria-hidden
+          >
+            {letter}
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-medium text-foreground">
+              {label}
+            </p>
+            <p className="truncate text-[11px] text-muted">{short}</p>
+          </div>
+        </div>
+        <span
+          className={cn(
+            "ml-1 shrink-0 text-base font-semibold tabular-nums",
+            tone.text
+          )}
+        >
+          {value}
+        </span>
+      </div>
+      <div className="mt-2 flex items-center gap-2">
+        <span className={cn("shrink-0", tone.text)}>{icon}</span>
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-elevated">
+          <motion.div
+            initial={false}
+            animate={{ width: `${value}%` }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className={cn("h-full rounded-full bg-gradient-to-r", tone.bar)}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 

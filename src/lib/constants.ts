@@ -6,7 +6,9 @@
  * parent URL — relative `/` would resolve to the parent root, not the
  * proxied app.
  */
-export const SITE_URL = "https://julianschoonhoven.com/labs/simpack";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  "https://simpack.julianschoonhoven.com";
 export const HOME_URL = `${SITE_URL}#home`;
 export const PRICING_URL = `${SITE_URL}/pricing`;
 

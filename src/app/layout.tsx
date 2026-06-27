@@ -4,11 +4,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import { Providers } from "@/providers/Providers";
+import { SITE_URL } from "@/lib/constants";
 import "./globals.css";
-
-const SIMPACK_ASSET_ORIGIN =
-  process.env.NEXT_PUBLIC_ASSET_ORIGIN?.trim() ||
-  "https://simpack-tau.vercel.app";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,23 +20,12 @@ const inter = Inter({
  * local dev so Next.js can derive relative URLs.
  */
 function resolveMetadataBase(): URL | undefined {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (explicit) {
-    try {
-      return new URL(explicit);
-    } catch {
-      // fallthrough
-    }
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim() || SITE_URL;
+  try {
+    return new URL(explicit);
+  } catch {
+    return undefined;
   }
-  const vercel = process.env.NEXT_PUBLIC_VERCEL_URL || process.env.VERCEL_URL;
-  if (vercel) {
-    try {
-      return new URL(`https://${vercel}`);
-    } catch {
-      // fallthrough
-    }
-  }
-  return undefined;
 }
 
 export const metadata: Metadata = {
@@ -51,31 +37,14 @@ export const metadata: Metadata = {
   description:
     "Simpack helps companies calculate ROI, risk, and ethical impact of AI investments in real time, enabling faster and better business decisions.",
   icons: {
-    // Absolute URLs so favicons load both when accessed directly on
-    // Vercel and when served via the julianschoonhoven.com proxy
-    // (which only forwards /labs/simpack/* and not /favicon.*).
     icon: [
-      { url: `${SIMPACK_ASSET_ORIGIN}/favicon.ico`, sizes: "any" },
-      { url: `${SIMPACK_ASSET_ORIGIN}/favicon.svg`, type: "image/svg+xml" },
-      {
-        url: `${SIMPACK_ASSET_ORIGIN}/favicon-16.svg`,
-        sizes: "16x16",
-        type: "image/svg+xml",
-      },
-      {
-        url: `${SIMPACK_ASSET_ORIGIN}/favicon-32.svg`,
-        sizes: "32x32",
-        type: "image/svg+xml",
-      },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16.svg", sizes: "16x16", type: "image/svg+xml" },
+      { url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
     ],
-    apple: [
-      {
-        url: `${SIMPACK_ASSET_ORIGIN}/favicon-32.svg`,
-        sizes: "32x32",
-        type: "image/svg+xml",
-      },
-    ],
-    shortcut: `${SIMPACK_ASSET_ORIGIN}/favicon.ico`,
+    apple: [{ url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" }],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     title: "Simpack — AI Investment Intelligence",
